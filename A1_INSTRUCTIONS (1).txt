@@ -1,0 +1,346 @@
+=============================================================================
+ASSIGNMENT 1 INSTRUCTIONS
+List-Based Inventory (Version 1.0)
+=============================================================================
+
+Your task: Build an inventory management system for Murphy's General Store
+using a 2D LIST (List of Lists) to store product data.
+
+=============================================================================
+OBJECTIVES
+=============================================================================
+
+By completing this assignment, you will demonstrate your ability to:
+  - Work with nested lists to manage complex data structures
+  - Implement functions with clear purposes and appropriate parameters
+  - Validate user input to prevent errors
+  - Use list methods (append, pop, index) correctly
+  - Format currency output using Irish conventions (€)
+
+=============================================================================
+THE DATA STRUCTURE: 2D LISTS
+=============================================================================
+
+Instead of managing five separate lists, you will store all data in ONE main 
+list called 'inventory'. Each item in this list is a sub-list representing 
+a single product.
+
+Structure: [Name, Category, Price, Quantity, Min_Stock]
+
+Example:
+  inventory = [
+      ["Milk",   "Dairy",   1.50,  20,  10],
+      ["Bread",  "Bakery",  0.85,  15,   5],
+      ["Tea",    "Bevs",    3.20,  30,   8]
+  ]
+
+To access the Price of Milk (which is at index 0 of the main list), 
+you would use: 
+  inventory[0][2]
+
+=============================================================================
+STEP 1: Constants & Initialisation
+=============================================================================
+
+To avoid confusion with index numbers (e.g., trying to remember if Price is 
+at index 2 or 3), you must define constants at the top of your file:
+
+  IDX_NAME = 0
+  IDX_CATEGORY = 1
+  IDX_PRICE = 2
+  IDX_QTY = 3
+  IDX_MIN = 4
+
+Now, instead of writing `product[2]`, you can write readable code:
+  print(f"Price: {product[IDX_PRICE]}")
+
+You should initialise your 'inventory' list at the start of your main 
+programme or function (using sample data or an empty list).
+
+=============================================================================
+STEP 2: Create a menu function
+=============================================================================
+
+You MUST create a separate function that displays the main menu and returns 
+the user's choice as an integer.
+
+This function should:
+  - Print all 7 menu options
+  - Get the user's choice (with validation)
+  - Return the choice as an integer
+  - Be called from your main programme loop
+
+Menu structure (exact wording):
+
+  === Murphy's General Store - Inventory System ===
+  1. View All Products
+  2. Add New Product
+  3. Update Stock
+  4. Remove Product
+  5. View Low Stock Alerts
+  6. View Total Inventory Value
+  7. Exit
+
+  Enter your choice (1-7):
+
+=============================================================================
+STEP 3: Implement each menu option as a function
+=============================================================================
+
+Each function should:
+  - Have a clear, descriptive name that includes a VERB (e.g., add_product)
+  - Include a docstring explaining what it does (the first two are completed, you must write for the remaining functions)
+  - Take the 'inventory' list as a parameter
+  - Return appropriate values (e.g., True/False for success, calculated totals)
+  - Handle errors gracefully (e.g., product not found, invalid input)
+  - Be callable from the main menu loop
+
+Refer to the sample outputs below for formatting guidance.
+
+Required functions (you may add helper functions as needed):
+
+  1. Function to view all products in the inventory
+     - Iterate through the 'inventory' list
+     - Display all products in a formatted table
+     - Show: product name, category, price, current stock, minimum stock
+     - Use the IDX constants to access the data fields
+     - If inventory is empty, display appropriate message
+
+  2. Function to add a product to the inventory
+     - Get product details from user
+     - Check if product already exists (case-insensitive loop check)
+     - Get remaining product details with validation (call input helper functions)
+     - Create a new sub-list: [name, category, price, quantity, min_stock]
+     - Append this sub-list to the main 'inventory' list
+     - Return True if successful, False if product already exists
+
+  3. Function to update product stock
+     - Ask for product name
+     - Loop to find the product sub-list inside 'inventory'
+     - Ask whether it's a sale (reduce stock) or delivery (increase stock)
+     - Update the quantity (product[IDX_QTY])
+     - Handle errors (product not found, insufficient stock for sales)
+     - Return True if successful, False otherwise
+
+  4. Function to remove a product
+     - Ask for product name
+     - Find the product's index in the main list
+     - Use a list method and the index to remove the entire sub-list
+     - Return True if successful, False if product not found
+
+  5. Function to view low stock alerts
+     - Display products where current stock <= minimum stock level
+     - Compare product[IDX_QTY] to product[IDX_MIN]
+     - Show how many units need to be ordered
+     - If no low stock items, display appropriate message
+
+  6. Function to calculate the inventory value
+     - Calculate total value of all stock
+     - Multiply product[IDX_PRICE] * product[IDX_QTY] for each item
+     - Sum these values and return the total as a float
+
+=============================================================================
+STEP 4: Create input validation helper functions
+=============================================================================
+
+Write helper functions to get valid input from users:
+
+  def get_valid_float(prompt, min_value=0.0):
+      """Keep asking until user enters a valid float."""
+
+  def get_valid_int(prompt, min_value=0):
+      """Keep asking until user enters a valid integer."""
+
+These should loop until the user provides acceptable input.
+Note that in some cases the default min_value may not apply
+(e.g., price shouldn't be zero).
+
+=============================================================================
+STEP 5: Build the main programme loop
+=============================================================================
+
+Your main programme should:
+  1. Initialise the 'inventory' list (with sample data or empty)
+  2. Display a welcome message
+  3. Loop until user chooses to exit:
+     - Display menu
+     - Get user's choice
+     - Call appropriate function based on choice
+     - Display results or error messages
+  4. Display a goodbye message when exiting
+
+=============================================================================
+SAMPLE CONSOLE OUTPUT
+=============================================================================
+
+--- Viewing All Products ---
+
+=== Murphy's General Store - Inventory System ===
+1. View All Products
+2. Add New Product
+3. Update Stock
+4. Remove Product
+5. View Low Stock Alerts
+6. View Total Inventory Value
+7. Exit
+
+Enter your choice (1-7): 1
+
+--- All Products ---
+Product                Category       Price    Stock    Min Stock
+================================================================
+Milk                   Dairy          €1.50    20       10
+Bread                  Bakery         €0.85    15       5
+Tea                    Beverages      €3.20    30       8
+================================================================
+
+--- Adding a New Product ---
+
+Enter your choice (1-7): 2
+
+--- Add New Product ---
+Enter product name: Butter
+Enter category: Dairy
+Enter price (€): 2.50
+Enter current stock quantity: 12
+Enter minimum stock level: 8
+
+Product 'Butter' added successfully!
+
+--- Updating Stock (Sale) ---
+
+Enter your choice (1-7): 3
+
+--- Update Stock ---
+Enter product name: Milk
+Is this a (S)ale or (D)elivery? s
+Enter quantity: 5
+
+Stock updated! Milk now has 15 units.
+
+--- Viewing Low Stock Alerts ---
+
+Enter your choice (1-7): 5
+
+--- Low Stock Alerts ---
+Product                Current    Minimum    Order
+==================================================
+Bread                  4          5          1
+==================================================
+Products requiring restock: 1
+
+--- Viewing Total Inventory Value ---
+
+Enter your choice (1-7): 6
+
+--- Inventory Value ---
+Total inventory value: €142.55
+
+--- Removing a Product ---
+
+Enter your choice (1-7): 4
+
+--- Remove Product ---
+Enter product name: Tea
+Are you sure you want to remove 'Tea'? (yes/no): yes
+
+Product 'Tea' removed successfully!
+
+--- Exiting ---
+
+Enter your choice (1-7): 7
+
+Thank you for using Murphy's General Store Inventory System!
+Goodbye!
+
+
+=============================================================================
+IMPLEMENTATION CHECKLIST
+=============================================================================
+
+Before submitting, verify your programme has:
+
+Data Structures:
+[ ] Main 'inventory' list created
+[ ] Constants defined for column indices (IDX_NAME, etc.)
+[ ] Lists are initialised with sample data or empty
+
+Required Functions (minimum required) to:
+[ ] Display the main menu and return the user's choice
+[ ] Show all products in a formatted table with details
+[ ] Add a new product sub-list after checking for duplicates
+[ ] Handle stock updates for sales and deliveries
+[ ] Remove a product sub-list from the inventory
+[ ] Display products with stock levels below minimum thresholds
+[ ] Calculate and return the total value of all inventory
+[ ] Validate and return float input from user with minimum value check
+[ ] Validate and return integer input from user with minimum value check
+
+Main Programme:
+[ ] Initialises the inventory list
+[ ] Displays welcome message
+[ ] Loops until user chooses exit
+[ ] Calls appropriate functions based on menu choice
+[ ] Displays goodbye message on exit
+
+Code Quality:
+[ ] All functions have docstrings
+[ ] Function names use verbs (add_product, not product_add)
+[ ] Proper error handling (product not found, invalid input)
+[ ] Currency formatted with € symbol and 2 decimal places
+[ ] Code uses the IDX constants instead of hard-coded numbers (e.g. [2])
+
+Testing:
+[ ] Can add products successfully
+[ ] Cannot add duplicate products (case-insensitive check)
+[ ] Can remove products (pops correctly)
+[ ] Stock updates work for both sales and deliveries
+[ ] Low stock alerts show correct products
+[ ] Total value calculates correctly
+[ ] Programme handles invalid input gracefully
+
+=============================================================================
+COMMON MISTAKES TO AVOID
+=============================================================================
+
+1. Using "Magic Numbers"
+   Wrong: print(product[2]) 
+   Right: print(product[IDX_PRICE])
+   Using the constants makes your code easier to read and fix.
+
+2. Modifying a copy instead of the list
+   If you use "for product in inventory:", you can modify the 'product'
+   list (e.g., product[IDX_QTY] += 1) because lists are mutable.
+   However, you cannot set "product = new_list" inside the loop.
+
+3. Not validating input
+   Wrong: price = float(input("Price: ")) crashes on non-numeric input
+   Right: Use try/except or the helper functions
+
+4. Removing items whilst looping
+   Wrong: Using .pop() or .remove() inside a for loop that's iterating 
+   through the list (causes indices to shift, skips items, 
+   may cause IndexError).
+   Right: Find the index first, use break to exit the loop, 
+   then call inventory.pop(index) after the loop completes.
+
+5. Not checking if product exists before operations
+   Wrong: Trying to update stock without checking if product exists
+   Right: Loop to find the product name first
+
+=============================================================================
+SUBMISSION REQUIREMENTS
+=============================================================================
+
+File name: inventory_v1.py
+
+Your file must include:
+  - Header comment with: name, student ID, date, description
+  - Index Constants defined at the top
+  - All required functions with docstrings
+  - Main programme loop
+  - References section (cite any external sources)
+  - AI statement (if AI tools used, explain how; if not used, state clearly)
+  - Self-reflection (2-3 sentences about what you learned)
+
+=============================================================================
