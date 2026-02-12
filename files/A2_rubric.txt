@@ -1,9 +1,114 @@
-Criteria	Excellent (70-100%)	Very Good (60-69%)	Good (50-59%)	Satisfactory (45-49%)	Acceptable (40-44%)	Fail (<40%)
-Marks	40	35	27	23	19	15
-Core Implementation (40%) Five new functions correctly implemented using dictionaries: generate_product_id(), search_products(), log_transaction(), view_transaction_log(), generate_category_report(). Dictionary operations (accessing values with keys, iterating through dictionaries, creating dictionaries) used appropriately. All required functionality present.	Excellent: All 5 functions are correctly implemented using dictionaries. Dictionary operations are used appropriately and efficiently throughout. Functions handle key-value access correctly, iterate through dictionaries properly, and create new dictionaries with appropriate structure. Product IDs are generated correctly. Search functionality works for both name and category. Transactions are logged with all required information. Transaction log displays correctly with proper formatting. Category report groups data and calculates totals accurately. Functions are robust and handle edge cases. Demonstrates comprehensive mastery of dictionary operations.	Very Good: All 5 functions present and working with good use of dictionaries. Dictionary operations used appropriately in most cases. Functions handle key-value access correctly. Product ID generation works with minor issues. Search functionality includes both search types with minor issues. Transaction logging works correctly. Transaction display formats data well. Category report groups and calculates correctly with minor issues. Strong grasp of dictionary operations, well supported by correct implementation.	Good: All 5 functions present with acceptable use of dictionaries. Dictionary operations used but sometimes inefficiently. Functions mostly handle key-value access correctly. Product ID generation works for basic cases. Search functionality implemented but may have issues. Transaction logging works with some issues. Transaction display adequate. Category report attempts grouping and calculations with some errors. Acceptable grasp of dictionary operations, though some minor errors appear.	Satisfactory: 3-4 functions present or 5 functions with significant issues. Dictionary operations used with some errors. Key-value access sometimes incorrect. Product ID generation unreliable. Search functionality inconsistent. Transaction logging minimal. Transaction display poor. Category report has calculation errors. Basic grasp of dictionary operations demonstrated, but only basic understanding portrayed with several errors.	Acceptable: 2-3 functions present or poorly implemented. Dictionary operations underused or misused. Key-value access often incorrect. Product ID generation broken. Search functionality unreliable. Transaction logging largely absent. Transaction display minimal. Category report has major errors. Basic grasp of dictionaries but unclear implementation with omissions or inaccuracies.	Fail: 0-2 functions present or fundamentally broken. No understanding of dictionary operations demonstrated. Cannot access values with keys. Cannot iterate through dictionaries. Cannot create dictionaries. Required functionality missing. Deficient understanding displayed with programme that does not run due to major issues.
-Marks	25	22	17	14	12	9
-Data Processing, Calculations and Integration (25%) Category report correctly processes inventory data using dictionaries: groups products by category, counts items, calculates values. Integration ensures new functions work with provided code without modification.	Excellent: Category report demonstrates excellent dictionary usage. Creates appropriate data structures to store grouped information. Correctly counts products per category and calculates total values. All calculations accurate. Report displays clearly. All 5 new functions integrate seamlessly with provided code. Student code does not modify or delete provided functions. Sample data initialisation works correctly. Transaction logging integrated properly. Programme runs without errors. Demonstrates excellent ability to process dictionary data and integrate code.	Very Good: Category report shows good dictionary usage with minor issues. Creates data structures correctly. Counts and calculates with minor inaccuracies. Report displays well. All functions integrate with provided code. No modification of provided functions. Sample data works. Transaction logging integrated. Minor integration issues that don't prevent operation. Well-developed capacity to process dictionary data and integrate code.	Good: Category report demonstrates acceptable dictionary usage with some issues. Data structures created with some problems. Counts or calculations have noticeable errors. Report displays adequately. Most functions integrate with provided code. Minimal or no modification of provided functions. Sample data mostly works. Transaction logging mostly integrated. Programme runs but may have some errors. Acceptable dictionary processing and integration with some lack of fluency.	Satisfactory: Category report attempts dictionary operations but has significant issues. Data structures incomplete or flawed. Calculations unreliable. Report displays poorly. Some integration problems. May have modified provided functions slightly. Sample data issues. Transaction logging incomplete. Programme runs but has errors. Basic understanding of dictionary processing but lacking detail with several errors.	Acceptable: Category report has major errors. Poor data structures. Major calculation errors. Minimal display. Poor integration. Provided functions modified. Sample data problems. Limited transaction logging. Many errors when running. Basic grasp but limited focus on correct implementation.	Fail: Category report missing or completely wrong. No appropriate data structures. No calculations. No integration. Provided functions deleted or heavily modified. Programme crashes or doesn't run. Deficient understanding of dictionary processing and integration.
-Marks	15	13	10	9	7	6
-Code Organisation and Style (15%) Five new functions well organised with clear separation from provided code. Meaningful variable names. Code follows PEP 8 conventions.	Excellent: All 5 new functions excellently organised, each handling a single task. Clear separation from provided code. Logical structure within each function. All variable and function names meaningful and follow Python conventions (snake_case). Code fully adheres to PEP 8 conventions. Demonstrates excellent ability to organise and structure code logically.	Very Good: Good use of 4-5 functions with clear separation of tasks. Good separation from provided code. Most variable and function names meaningful and follow conventions. Code mostly adheres to PEP 8 conventions. Demonstrates well-developed capacity to organise code with clear structure.	Good: Adequate use of 3-4 functions. Some separation from provided code. Variable names generally meaningful with some poor choices. Code partially adheres to PEP 8. Demonstrates acceptable code organisation but some lack of structure and consistency.	Satisfactory: Limited use of 2-3 functions with poor separation of tasks. Poor separation from provided code. Variable names often unclear. Code has multiple PEP 8 violations. Demonstrates basic code structure but somewhat lacking organisation.	Acceptable: 1-2 functions not used effectively. Minimal separation from provided code. Variable names often meaningless. Code ignores PEP 8 conventions. Unclear code organisation with random layout.	Fail: No functional organisation. New code mixed randomly with provided code or provided functions modified/deleted. Variable names make code unreadable. No adherence to coding standards. Random and undisciplined code organisation without any structure.
-Marks	20	17	13	11	9	7
-Documentation and Self-Reflection (20%) Header comment complete. Docstrings for all 5 new functions. Inline comments explain code. Self-reflection demonstrates engagement. AI usage properly disclosed.	Excellent: Header comment includes all required elements (filename, name, student ID, date, description). All 5 new functions have clear, informative docstrings. Inline comments effectively explain code logic without over-commenting. Self-reflection statement demonstrates comprehensive engagement with learning outcomes and problem solving. Shows specific insights about dictionary concepts, challenges faced, or advantages over other data structures. AI usage (if any) is thoroughly documented with prompts, critical evaluation and working links; or explicit statement that no AI was used.	Very Good: Header comment includes most required elements. 4-5 functions have good docstrings. Inline comments explain most sections well. Self-reflection describes learning about dictionaries with some original insights. AI usage is well documented, but links don't work, or AI is clearly stated as not used.	Good: Header comment includes basic elements. 3-4 functions have docstrings. Inline comments present but may be unclear. Self-reflection mentions dictionaries but ideas stated rather than developed. AI usage documented but insufficiently detailed.	Satisfactory: Header comment incomplete. 1-2 functions have minimal docstrings. Inline comments minimal. Self-reflection basic with only some engagement with dictionary concepts. AI usage documentation incomplete.	Acceptable: Header comment missing key elements. 0-1 functions have docstrings. No meaningful inline comments. Self-reflection superficial with no specific mention of dictionaries. AI usage poorly documented.	Fail: No documentation present. No header, docstrings, or comments. No self-reflection or no engagement with dictionary concepts. AI usage undisclosed or misrepresented.
+# A2 ASSIGNMENT RUBRIC: Dictionary-Enhanced Inventory System
+
+## Overview
+- **Total: 100%** across 4 criteria
+- **Grade bands:** Excellent (70-100%), Very Good (60-69%), Good (50-59%), Satisfactory (45-49%), Acceptable (40-44%), Fail (<40%)
+
+---
+
+## CRITERION 1: Core Implementation (40%)
+
+### What's being assessed:
+Five new functions correctly implemented using dictionaries:
+1. `generate_product_id()`
+2. `search_products()`
+3. `log_transaction()`
+4. `view_transaction_log()`
+5. `generate_category_report()`
+
+Dictionary operations (accessing values with keys, iterating through dictionaries, creating dictionaries) used appropriately. All required functionality present.
+
+### Grade descriptors:
+
+| Grade | Marks | Description |
+|-------|-------|-------------|
+| **Excellent** | 40 | All 5 functions correctly implemented. Dictionary operations used appropriately and efficiently. Functions handle key-value access correctly, iterate through dictionaries properly, create new dictionaries with appropriate structure. Product IDs generated correctly. Search works for both name and category. Transactions logged with all required information. Transaction log displays correctly with proper formatting. Category report groups data and calculates totals accurately. Functions are robust and handle edge cases. Comprehensive mastery of dictionary operations. |
+| **Very Good** | 35 | All 5 functions present and working with good use of dictionaries. Dictionary operations used appropriately in most cases. Key-value access correct. Product ID generation works with minor issues. Search functionality includes both types with minor issues. Transaction logging works correctly. Transaction display formats data well. Category report groups and calculates correctly with minor issues. Strong grasp of dictionary operations. |
+| **Good** | 27 | All 5 functions present with acceptable use of dictionaries. Dictionary operations used but sometimes inefficiently. Key-value access mostly correct. Product ID generation works for basic cases. Search functionality implemented but may have issues. Transaction logging works with some issues. Transaction display adequate. Category report attempts grouping and calculations with some errors. Acceptable grasp with minor errors. |
+| **Satisfactory** | 23 | 3-4 functions present OR 5 functions with significant issues. Dictionary operations used with some errors. Key-value access sometimes incorrect. Product ID generation unreliable. Search functionality inconsistent. Transaction logging minimal. Transaction display poor. Category report has calculation errors. Basic grasp demonstrated but only basic understanding with several errors. |
+| **Acceptable** | 19 | 2-3 functions present or poorly implemented. Dictionary operations underused or misused. Key-value access often incorrect. Product ID generation broken. Search functionality unreliable. Transaction logging largely absent. Transaction display minimal. Category report has major errors. Basic grasp but unclear implementation with omissions or inaccuracies. |
+| **Fail** | 15 | 0-2 functions present or fundamentally broken. No understanding of dictionary operations demonstrated. Cannot access values with keys. Cannot iterate through dictionaries. Cannot create dictionaries. Required functionality missing. Programme does not run due to major issues. |
+
+---
+
+## CRITERION 2: Data Processing, Calculations and Integration (25%)
+
+### What's being assessed:
+- Category report correctly processes inventory data using dictionaries
+- Groups products by category, counts items, calculates values
+- Integration ensures new functions work with provided code without modification
+
+### Grade descriptors:
+
+| Grade | Marks | Description |
+|-------|-------|-------------|
+| **Excellent** | 25 | Category report demonstrates excellent dictionary usage. Creates appropriate data structures for grouped information. Correctly counts products per category and calculates total values. All calculations accurate. Report displays clearly. All 5 new functions integrate seamlessly with provided code. Student code does not modify or delete provided functions. Sample data initialisation works correctly. Transaction logging integrated properly. Programme runs without errors. |
+| **Very Good** | 22 | Category report shows good dictionary usage with minor issues. Creates data structures correctly. Counts and calculates with minor inaccuracies. Report displays well. All functions integrate with provided code. No modification of provided functions. Sample data works. Transaction logging integrated. Minor integration issues that don't prevent operation. |
+| **Good** | 17 | Category report demonstrates acceptable dictionary usage with some issues. Data structures created with some problems. Counts or calculations have noticeable errors. Report displays adequately. Most functions integrate with provided code. Minimal or no modification of provided functions. Sample data mostly works. Transaction logging mostly integrated. Programme runs but may have some errors. |
+| **Satisfactory** | 14 | Category report attempts dictionary operations but has significant issues. Data structures incomplete or flawed. Calculations unreliable. Report displays poorly. Some integration problems. May have modified provided functions slightly. Sample data issues. Transaction logging incomplete. Programme runs but has errors. |
+| **Acceptable** | 12 | Category report has major errors. Poor data structures. Major calculation errors. Minimal display. Poor integration. Provided functions modified. Sample data problems. Limited transaction logging. Many errors when running. |
+| **Fail** | 9 | Category report missing or completely wrong. No appropriate data structures. No calculations. No integration. Provided functions deleted or heavily modified. Programme crashes or doesn't run. |
+
+---
+
+## CRITERION 3: Code Organisation and Style (15%)
+
+### What's being assessed:
+- Five new functions well organised with clear separation from provided code
+- Meaningful variable names
+- Code follows PEP 8 conventions
+
+### Grade descriptors:
+
+| Grade | Marks | Description |
+|-------|-------|-------------|
+| **Excellent** | 15 | All 5 new functions excellently organised, each handling a single task. Clear separation from provided code. Logical structure within each function. All variable and function names meaningful and follow Python conventions (snake_case). Code fully adheres to PEP 8 conventions. |
+| **Very Good** | 13 | Good use of 4-5 functions with clear separation of tasks. Good separation from provided code. Most variable and function names meaningful and follow conventions. Code mostly adheres to PEP 8 conventions. |
+| **Good** | 10 | Adequate use of 3-4 functions. Some separation from provided code. Variable names generally meaningful with some poor choices. Code partially adheres to PEP 8. |
+| **Satisfactory** | 9 | Limited use of 2-3 functions with poor separation of tasks. Poor separation from provided code. Variable names often unclear. Code has multiple PEP 8 violations. |
+| **Acceptable** | 7 | 1-2 functions not used effectively. Minimal separation from provided code. Variable names often meaningless. Code ignores PEP 8 conventions. Unclear code organisation. |
+| **Fail** | 6 | No functional organisation. New code mixed randomly with provided code or provided functions modified/deleted. Variable names make code unreadable. No adherence to coding standards. |
+
+---
+
+## CRITERION 4: Documentation and Self-Reflection (20%)
+
+### What's being assessed:
+- Header comment complete
+- Docstrings for all 5 new functions
+- Inline comments explain code
+- External sources properly referenced (websites, Stack Overflow, videos, books) with URLs and usage notes
+- AI usage properly disclosed
+- Self-reflection demonstrates engagement
+
+### Grade descriptors:
+
+| Grade | Marks | Description |
+|-------|-------|-------------|
+| **Excellent** | 20 | Header comment includes all required elements (filename, name, student ID, date, description). All 5 new functions have clear, informative docstrings. Inline comments effectively explain code logic without over-commenting. All external sources properly referenced with URLs and clear usage notes. AI usage (if any) thoroughly documented with prompts, critical evaluation and working links; or explicit statement that no AI was used. Self-reflection demonstrates comprehensive engagement with learning outcomes and problem solving. Shows specific insights about dictionary concepts, challenges faced, or advantages over other data structures. |
+| **Very Good** | 17 | Header comment includes most required elements. 4-5 functions have good docstrings. Inline comments explain most sections well. Most external sources referenced with URLs and usage notes. AI usage well documented but links don't work, or AI clearly stated as not used. Self-reflection describes learning about dictionaries with some original insights. |
+| **Good** | 13 | Header comment includes basic elements. 3-4 functions have docstrings. Inline comments present but may be unclear. Some external sources referenced but missing details (URLs, usage notes). AI usage documented but insufficiently detailed. Self-reflection mentions dictionaries but ideas stated rather than developed. |
+| **Satisfactory** | 11 | Header comment incomplete. 1-2 functions have minimal docstrings. Inline comments minimal. Incomplete referencing. External sources listed but no usage notes. AI usage documentation vague or incomplete. Self-reflection basic with only some engagement with dictionary concepts. |
+| **Acceptable** | 9 | Header comment missing key elements. 0-1 functions have docstrings. No meaningful inline comments. Minimal referencing. AI usage poorly documented. Self-reflection superficial with no specific mention of dictionaries. |
+| **Fail** | 7 | No documentation present. No header, docstrings, or comments. No references. AI usage undisclosed or misrepresented. No self-reflection or no engagement with dictionary concepts. |
+
+---
+
+## QUICK REFERENCE: What each function must do
+
+| Function | Key Requirements |
+|----------|------------------|
+| `generate_product_id(inventory)` | Return "P001" if empty; otherwise find highest existing ID number, add 1, format as "P" + 3 zero-padded digits |
+| `search_products(inventory)` | Ask user for (N)ame or (C)ategory; name search = partial match, case-insensitive; category search = exact match, case-insensitive; display formatted results with count |
+| `log_transaction(transactions, trans_type, product_id, product_name, quantity)` | Create transaction dict with type, product_id, product_name, quantity, timestamp (ISO format); append to transactions list |
+| `view_transaction_log(transactions, num_recent=10)` | Display most recent transactions (newest first); format timestamp as "YYYY-MM-DD HH:MM:SS"; show quantity with +/- sign |
+| `generate_category_report(inventory)` | Group products by category; count products and sum value (price × quantity) per category; display formatted report with totals; return the category data dict |
+
+---
+
+## INTEGRATION REQUIREMENTS
+
+- Student code must NOT modify or delete provided functions
+- All 5 new functions must work with provided `main()` function
+- Sample data initialisation must work correctly
+- Programme must run without errors
