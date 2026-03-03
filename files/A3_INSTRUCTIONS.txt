@@ -1,0 +1,383 @@
+=============================================================================
+ASSIGNMENT 3 INSTRUCTIONS
+Persistent Storage & Modules (Version 3.0)
+=============================================================================
+
+Your task: Add persistent storage so inventory data survives between
+programme runs, and organise your code into separate modules for better
+maintainability.
+
+=============================================================================
+CODE REUSE FROM A2
+=============================================================================
+
+IMPORTANT: You are NOT rewriting your inventory system - you are reorganising
+it into modules and adding file persistence.
+
+PROVIDED FILE: functions_for_reuse.py
+This file contains 19 fully-implemented functions from previous assignments.
+Your task is to organize these functions into the appropriate modules.
+
+Functions 1-19 (use as-is with NO changes):
+  1. get_valid_float(prompt, min_value)
+  2. get_valid_int(prompt, min_value)
+  3. generate_product_id(inventory)
+  4. find_product_by_name(inventory, search_term)
+  5. find_product_by_category(inventory, category)
+  6. log_transaction(transactions, trans_type, product_id, product_name, quantity)
+  7. view_transaction_log(transactions, num_recent)
+  8. view_all_products(inventory)
+  9. add_product(inventory, transactions)
+  10. update_stock(inventory, transactions)
+  11. update_product_details(inventory)
+  12. remove_product(inventory)
+  13. search_products(inventory)
+  14. view_low_stock(inventory)
+  15. generate_category_report(inventory)
+  16. calculate_inventory_value(inventory)
+  17. display_menu() - updated to show 11 options (10=Export Reports, 11=Save & Exit)
+  18. main() - updated with load at startup, export submenu handling, save on exit
+  19. handle_export_menu(inventory) - new export submenu with 5 options
+
+Your tasks:
+  1. Create three new files: main.py (rename given template), 
+     data_handler.py, inventory_operations.py
+  2. Copy all 19 functions to appropriate modules (NO changes needed - all A3-ready)
+  3. Write 7 NEW file operation functions in the appropriate module:
+     - load_inventory(filename)
+     - save_inventory(inventory, filename)
+     - load_transactions(filename)
+     - save_transactions(transactions, filename)
+     - export_inventory_to_csv(inventory, filename)
+     - export_low_stock_to_csv(inventory, filename)
+     - generate_text_report(inventory, filename)
+
+=============================================================================
+LEARNING OBJECTIVES
+=============================================================================
+
+By completing this assignment, you will demonstrate your ability to:
+  - Organise code into multiple modules with clear responsibilities
+  - Save and load data using JSON format
+  - Handle file errors gracefully (file not found, corrupted data)
+  - Export data in different formats (CSV, formatted text)
+  - Use import statements to connect modules
+  - Design functions that are reusable across projects
+
+=============================================================================
+WHY MODULES AND FILES?
+=============================================================================
+
+Single-file programmes become hard to maintain as they grow.
+Modules organise code by purpose, making it:
+  - Easier to find and fix bugs
+  - Easier to test individual parts
+  - Easier to reuse code in other projects
+  - Easier for teams to work on different parts
+
+Persistent storage means:
+  - Data survives when programme closes
+  - Users don't re-enter data every time
+  - Professional, production-ready application
+
+=============================================================================
+PROJECT STRUCTURE
+=============================================================================
+
+Your submission should contain these files:
+
+  inventory_manager_v3/            - Assignment folder
+      ├── main.py                  - Menu, user interaction, entry point
+      ├── data_handler.py          - All file operations
+      ├── inventory_operations.py  - Business logic
+      ├── inventory.json           - Sample data file (created when saving)
+      └── transactions.json        - Transaction log (created when saving)
+
+=============================================================================
+STEP 1: Plan your modules
+=============================================================================
+
+Split the code into THREE files. Decide what goes where.
+
+Ask yourself: "What is this function's job?"
+  - Talking to files? → data_handler.py
+  - Processing inventory data? → inventory_operations.py
+  - Showing menus or getting user input? → main.py
+
+General rules:
+  - Functions that use 'open()' go in data_handler.py
+  - Functions that manipulate inventory/transactions go in inventory_operations.py
+  - Functions that use 'input()' or 'print()' for menus go in main.py
+
+=============================================================================
+STEP 2: Use imports to connect modules
+=============================================================================
+
+In main.py, import functions from your other modules:
+
+  from module_name import function_1_name, function_2_name
+
+Then call them normally:
+
+  inventory = function_1_name(one_or_more_arguments)
+  function_2_name(inventory)
+
+=============================================================================
+STEP 3: Implement JSON persistence
+=============================================================================
+
+JSON (JavaScript Object Notation) is a text format for storing data.
+Python dictionaries convert naturally to/from JSON.
+
+Example inventory.json:
+
+  {
+    "P001": {
+      "name": "Milk",
+      "category": "Dairy",
+      "price": 1.50,
+      "quantity": 20,
+      "min_stock": 10
+    },
+    "P002": {
+      "name": "Bread",
+      "category": "Bakery",
+      "price": 0.85,
+      "quantity": 15,
+      "min_stock": 5
+    }
+  }
+
+Example transactions.json:
+
+  [
+    {
+      "type": "sale",
+      "product_id": "P001",
+      "product_name": "Milk",
+      "quantity": -5,
+      "timestamp": "2026-01-25T14:30:00"
+    }
+  ]
+
+Your programme should:
+  - Load data at startup (if files exist)
+  - Save data when user chooses "Save & Exit"
+  - Handle missing files gracefully (start with empty data)
+  - Handle corrupted files gracefully (start with empty data, inform user)
+
+=============================================================================
+STEP 4: Implement export functionality
+=============================================================================
+
+Create functions to export data in different formats:
+
+  1. Export inventory to CSV (for Excel):
+     ID,Name,Category,Price,Quantity,Min Stock
+     P001,Milk,Dairy,1.50,20,10
+     P002,Bread,Bakery,0.85,15,5
+
+  2. Export low stock report to CSV:
+     ID,Name,Category,Current,Minimum,Order
+     P002,Bread,Bakery,4,5,6
+
+  3. Generate formatted text report:
+     ============================================================
+              MURPHY'S GENERAL STORE - INVENTORY REPORT
+              Generated: 2026-01-25 14:30
+     ============================================================
+
+     ID     Product         Category    Price    Stock    Min
+     ============================================================
+     P001   Milk            Dairy       €1.50    20       10
+     P002   Bread           Bakery      €0.85    15       5
+     ============================================================
+     Total Products: 2
+     Total Value: €42.75
+     ============================================================
+
+=============================================================================
+MENU STRUCTURE
+=============================================================================
+
+Main menu (11 options):
+
+  === Murphy's General Store - Inventory System ===
+  1. View All Products
+  2. Add New Product
+  3. Update Stock (Sale/Delivery)
+  4. Update Product Details
+  5. Remove Product
+  6. Search Products
+  7. View Low Stock Alerts
+  8. View Category Report
+  9. View Transaction Log
+ 10. Export Reports
+ 11. Save & Exit
+
+  Enter your choice (1-11):
+
+Export reports submenu (option 10):
+
+  --- Export Reports ---
+  1. Export inventory to CSV
+  2. Export low stock report to CSV
+  3. Generate formatted text report
+  4. Export all reports
+  5. Cancel
+
+  Enter your choice (1-5):
+
+=============================================================================
+SAMPLE CONSOLE OUTPUT
+=============================================================================
+
+--- Programme Startup (files exist) ---
+
+Welcome to Murphy's General Store Inventory System!
+Loaded 4 products from inventory.json
+Loaded 12 transactions from transactions.json
+
+=== Murphy's General Store - Inventory System ===
+[menu displayed...]
+
+--- Programme Startup (files don't exist) ---
+
+Welcome to Murphy's General Store Inventory System!
+Note: inventory.json not found. Starting with empty inventory.
+Note: transactions.json not found. Starting with empty transaction log.
+
+=== Murphy's General Store - Inventory System ===
+[menu displayed...]
+
+--- Programme Startup (corrupted file) ---
+
+Welcome to Murphy's General Store Inventory System!
+Error: inventory.json is corrupted. Starting with empty inventory.
+Loaded 12 transactions from transactions.json
+
+=== Murphy's General Store - Inventory System ===
+[menu displayed...]
+
+--- Exporting Reports ---
+
+Enter your choice (1-11): 10
+
+--- Export Reports ---
+1. Export inventory to CSV
+2. Export low stock report to CSV
+3. Generate formatted text report
+4. Export all reports
+5. Cancel
+
+Enter your choice (1-5): 1
+
+Inventory exported to inventory_20260125_1430.csv
+
+--- Exporting All Reports ---
+
+Enter your choice (1-5): 4
+
+Inventory exported to inventory_20260125_1430.csv
+Low stock report exported to low_stock_20260125_1430.csv
+Report saved to inventory_report_20260125_1430.txt
+
+All reports exported successfully!
+
+--- Saving and Exiting ---
+
+Enter your choice (1-11): 11
+
+Saving data...
+Inventory saved to inventory.json
+Transactions saved to transactions.json
+
+Thank you for using Murphy's General Store Inventory System!
+Goodbye!
+
+=============================================================================
+IMPLEMENTATION CHECKLIST
+=============================================================================
+
+File Structure:
+[ ] inventory_manager_v3/ - assignment folder
+[ ] main.py - menu and user interaction
+[ ] data_handler.py - all file operations
+[ ] inventory_operations.py - business logic
+[ ] Creates inventory.json when saving
+[ ] Creates transactions.json when saving
+
+Required Functions:
+[ ] Load inventory (returns dict, handles file not found)
+[ ] Save inventory (uses json.dump() with indent=2)
+[ ] Load transactions (returns list, handles file not found)
+[ ] Save transactions (saves list of transaction dicts)
+[ ] Export inventory to CSV (includes headers)
+[ ] Export low stock report to CSV (only low stock products)
+[ ] Generate formatted text report (formatted with headers and footer)
+
+Error Handling:
+[ ] File not found - starts with empty data
+[ ] Corrupted JSON - starts with empty data, informs user
+[ ] IOError - displays error message
+
+Code Quality:
+[ ] All functions have docstrings
+[ ] Function names use verbs
+[ ] Proper imports at top of files
+[ ] Currency formatted with € and 2 decimals
+[ ] Timestamps in export filenames
+
+=============================================================================
+COMMON MISTAKES TO AVOID
+=============================================================================
+
+1. Not handling file errors
+   Wrong: Programme crashes if JSON file is corrupted
+   Right: Use try/except, start with empty data
+
+2. Circular imports
+   Wrong: main.py imports from data_handler.py AND
+          data_handler.py imports from main.py
+   Right: Only main.py imports from other modules
+
+3. Hard-coding filenames everywhere
+   Wrong: "inventory.json" appears in 10 different places
+   Right: Pass filename as parameter to functions
+
+4. Not using indent in json.dump()
+   Wrong: json.dump(data, f) creates unreadable one-line file
+   Right: json.dump(data, f, indent=2) creates readable file
+
+5. Forgetting imports
+   Wrong: Using json without "import json"
+   Right: Import at top of file
+
+=============================================================================
+SUBMISSION REQUIREMENTS
+=============================================================================
+
+Folder name:
+  - inventory_manager_v3/
+
+File names:
+  - main.py
+  - data_handler.py
+  - inventory_operations.py
+  - inventory.json
+  - transactions.json
+
+Each .py file must include:
+  - Header comment with: name, student ID, date, description
+  - Import statements
+  - Functions with docstrings
+
+Only main.py needs:
+  - References section
+  - AI statement
+  - Self-reflection (2-3 sentences)
+
+Save all files in the same folder, compress the folder,
+and submit the ZIP file.
+
+=============================================================================
