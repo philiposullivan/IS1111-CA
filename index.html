@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>IS1111 Assignment Resources</title>
+  <title>IS1111 — Assignment 3 Resources</title>
   <style>
     body { font-family: system-ui, Arial, sans-serif; margin: 24px; line-height: 1.4; }
     h1 { margin-bottom: 6px; }
@@ -12,135 +12,54 @@
     section { margin: 28px 0; }
     pre { background:#0f172a; color:#e5e7eb; padding:16px; overflow:auto; border-radius:10px; }
     code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ddd; padding: 10px; vertical-align: top; }
-    th { background: #f3f4f6; position: sticky; top: 0; }
     .toolbar { margin: 12px 0; }
     .toolbar a { margin-right: 12px; }
     .divider { border: none; border-top: 3px solid #3b82f6; margin: 48px 0; }
   </style>
 </head>
 <body>
-  <h1>IS1111 Assignment Resources</h1>
-  <p class="muted">A1 and A2 content below. Raw file links included for Copilot + downloads.</p>
+  <h1>IS1111 — Assignment 3 Resources</h1>
+  <p class="muted">Persistent Storage &amp; Modules (v3). Raw file links for Copilot + downloads.</p>
 
-  <!-- ============ A1 SECTION ============ -->
   <hr class="divider" />
-  <h2>📦 Assignment 1 — List-Based Inventory (v1)</h2>
+  <h2>📦 Assignment 3 — Persistent Storage &amp; Modules (v3)</h2>
 
   <div class="toolbar">
-    <a href="files/A1_INSTRUCTIONS.txt" target="_blank" rel="noopener">Raw: A1 Instructions</a>
-    <a href="files/A1_rubric.txt" target="_blank" rel="noopener">Raw: A1 Rubric</a>
-    <a href="files/inventory_v1_template.txt" target="_blank" rel="noopener">Raw: A1 Template (.py)</a>
+    <a href="files/A3_INSTRUCTIONS.txt" target="_blank" rel="noopener">Raw: A3 Instructions</a>
+    <a href="files/main_v3_template.py" target="_blank" rel="noopener">Raw: main_v3_template.py</a>
+    <a href="files/functions_for_reuse.py" target="_blank" rel="noopener">Raw: functions_for_reuse.py</a>
   </div>
 
   <section>
-    <h3>A1 Instructions</h3>
-    <pre><code id="a1instructions">Loading…</code></pre>
+    <h3>A3 Instructions</h3>
+    <pre><code id="a3instructions">Loading…</code></pre>
   </section>
 
   <section>
-    <h3>A1 Rubric</h3>
-    <div id="a1rubricStatus">Loading…</div>
-    <div style="overflow:auto; max-width:100%;">
-      <table id="a1rubricTable"></table>
-    </div>
+    <h3>main_v3_template.py</h3>
+    <pre><code id="a3maintemplate">Loading…</code></pre>
   </section>
 
   <section>
-    <h3>inventory_v1_template.py</h3>
-    <pre><code id="a1template">Loading…</code></pre>
+    <h3>functions_for_reuse.py</h3>
+    <pre><code id="a3functions">Loading…</code></pre>
   </section>
 
-  <!-- ============ A2 SECTION ============ -->
-  <hr class="divider" />
-  <h2>📦 Assignment 2 — Dictionary-Enhanced Inventory (v2)</h2>
-
-  <div class="toolbar">
-    <a href="files/A2_INSTRUCTIONS.txt" target="_blank" rel="noopener">Raw: A2 Instructions</a>
-    <a href="files/A2_rubric.txt" target="_blank" rel="noopener">Raw: A2 Rubric</a>
-    <a href="files/inventory_v2_template.txt" target="_blank" rel="noopener">Raw: A2 Template (.py)</a>
-  </div>
-
-  <section>
-    <h3>A2 Instructions</h3>
-    <pre><code id="a2instructions">Loading…</code></pre>
-  </section>
-
-  <section>
-    <h3>A2 Rubric</h3>
-    <div id="a2rubricStatus">Loading…</div>
-    <div style="overflow:auto; max-width:100%;">
-      <table id="a2rubricTable"></table>
-    </div>
-  </section>
-
-  <section>
-    <h3>inventory_v2_template.py</h3>
-    <pre><code id="a2template">Loading…</code></pre>
-  </section>
-
-  <!-- ============ SCRIPTS ============ -->
   <script>
     async function loadText(selector, url) {
       const el = document.querySelector(selector);
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error(url + " → HTTP " + res.status);
-      el.textContent = await res.text();
-    }
-
-    function tsvToTable(tsv, tableEl) {
-      const lines = tsv
-        .replace(/\r/g, "")
-        .split("\n")
-        .filter(line => line.trim().length > 0);
-      const rows = lines.map(line => line.split("\t"));
-      const maxCols = Math.max(...rows.map(r => r.length));
-      tableEl.innerHTML = "";
-      rows.forEach((cells, rIdx) => {
-        const tr = document.createElement("tr");
-        while (cells.length < maxCols) cells.push("");
-        cells.forEach(cell => {
-          const el = document.createElement(rIdx === 0 ? "th" : "td");
-          el.textContent = cell.trim();
-          tr.appendChild(el);
-        });
-        tableEl.appendChild(tr);
-      });
-    }
-
-    async function loadRubric(fileUrl, tableSelector, statusSelector) {
       try {
-        const res = await fetch(fileUrl, { cache: "no-store" });
-        if (!res.ok) throw new Error(fileUrl + " → HTTP " + res.status);
-        const tsv = await res.text();
-        tsvToTable(tsv, document.querySelector(tableSelector));
-        document.querySelector(statusSelector).textContent = "";
+        const res = await fetch(url, { cache: "no-store" });
+        if (!res.ok) throw new Error(url + " → HTTP " + res.status);
+        el.textContent = await res.text();
       } catch (e) {
-        document.querySelector(statusSelector).textContent =
-          "Could not load rubric. " + e;
+        el.textContent = String(e);
       }
     }
 
-    (async () => {
-      // A1
-      loadText("#a1instructions", "files/A1_INSTRUCTIONS.txt").catch(e => {
-        document.querySelector("#a1instructions").textContent = String(e);
-      });
-      loadRubric("files/A1_rubric.txt", "#a1rubricTable", "#a1rubricStatus");
-      loadText("#a1template", "files/inventory_v1_template.py").catch(e => {
-        document.querySelector("#a1template").textContent = String(e);
-      });
-
-      // A2
-      loadText("#a2instructions", "files/A2_INSTRUCTIONS.txt").catch(e => {
-        document.querySelector("#a2instructions").textContent = String(e);
-      });
-      loadRubric("files/A2_rubric.txt", "#a2rubricTable", "#a2rubricStatus");
-      loadText("#a2template", "files/inventory_v2_template.txt").catch(e => {
-        document.querySelector("#a2template").textContent = String(e);
-      });
-    })();
+    loadText("#a3instructions",  "files/A3_INSTRUCTIONS.txt");
+    loadText("#a3maintemplate",  "files/main_v3_template.py");
+    loadText("#a3functions",     "files/functions_for_reuse.py");
   </script>
 </body>
 </html>
